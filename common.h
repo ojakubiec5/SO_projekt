@@ -20,7 +20,7 @@
 #define P_TYPES 12         
 #define MAX_SHELF_CAP 20   
 #define MAX_CUSTOMERS 10   
-#define NUM_TEST_CUSTOMERS 20 
+#define NUM_TEST_CUSTOMERS 50 
 #define K_FACTOR (MAX_CUSTOMERS / 2) 
 #define REPORT_FILE "raport.txt"
 
@@ -28,6 +28,12 @@
 #define ID_SHM 10
 #define ID_SEM 11
 #define ID_MSG 12
+
+static const char *PRODUCT_NAMES[P_TYPES] = {
+    "Chleb",      "Bulka",     "Paczek",    "Drozdzowka",
+    "Rogal",      "Bagietka",  "Ekler",     "Ptys",
+    "Sernik",     "Makowiec",  "Szarlotka", "Precel"
+};
 
 typedef struct {
     int shelves[P_TYPES];      

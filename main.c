@@ -78,25 +78,29 @@ int main(int argc, char *argv[]) {
     log_msg(semid, "[Kierownik] Wpuszczam %d klientów...\n", NUM_TEST_CUSTOMERS);
     for (int i = 0; i < NUM_TEST_CUSTOMERS; i++) {
         if (fork() == 0) { execl("./customer", "customer", NULL); exit(0); }
-        usleep((rand() % 600 + 100) * 1000);
+        usleep((rand() % 500 + 500) * 1000);
     }
 
     for (int i = 0; i < NUM_TEST_CUSTOMERS; i++) wait(NULL);
     
-log_msg(semid, "\n--- RAPORT KOŃCOWY (INWENTARYZACJA KIEROWNIKA) ---\n");
-log_msg(semid, "Produkt | Wyprodukowano | Sprzedano | Na półce\n");
-log_msg(semid, "--------|---------------|-----------|---------\n");
-for(int i=0; i<P_TYPES; i++) {
-    log_msg(semid, " P%02d    | %6d        | %6d    | %6d\n", 
-        i, store->total_produced[i], store->total_sold[i], store->shelves[i]);
-}
--
+    log_msg(semid, "\n--- RAPORT KONCOWY (INWENTARYZACJA KIEROWNIKA) ---\n");
+    log_msg(semid, "%-12s | Wyprodukowano | Sprzedano | Na polce\n", "Produkt");
+    log_msg(semid, "-------------|---------------|-----------|---------\n");
+    
+    for(int i=0; i<P_TYPES; i++) {
+        log_msg(semid, " %-12s| %6d        | %6d    | %6d\n", 
+            PRODUCT_NAMES[i], 
+            store->total_produced[i], 
+            store->total_sold[i], 
+            store->shelves[i]);
+    }
+    
+    log_msg(semid, "\n[Kierownik] Zamykam sklep. Czekam na raporty pracownikow...\n");
+    store->shop_open = 0; 
+    
+    msgctl(msgid, IPC_RMID, NULL);
 
-log_msg(semid, "\n[Kierownik] Zamykam sklep. Czekam na raporty pracowników...\n");
-store->shop_open = 0; 
-
-sleep(2); 
-
-cleanup();
-return 0;
+    sleep(2); 
+    cleanup();
+    return 0;
 }

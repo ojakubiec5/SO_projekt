@@ -27,8 +27,8 @@ int main() {
                 store->total_produced[i] += produced;
                 daily_production += produced; 
                 if (produced > 0) {
-                    char tmp[32];
-                    sprintf(tmp, "P%d(+%d) ", i, produced);
+                    char tmp[64];
+                    sprintf(tmp, "%s(+%d) ", PRODUCT_NAMES[i], produced);
                     strcat(buffer, tmp);
                     any = 1;
                 }
