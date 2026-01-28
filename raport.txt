@@ -1,0 +1,76 @@
+[Kierownik] Godzina Tp: Uruchamiam piekarnię (Sklep zamknięty).
+[Kierownik] Czekam na wypieki (symulacja 30min)...
+[Piekarz] Zaczynam pracę.
+[Piekarz] Dostawa: Paczek(+2) Bagietka(+3) Ekler(+2) Ptys(+3) Sernik(+1) Szarlotka(+2) Precel(+1) 
+[Piekarz] Dostawa: Bulka(+1) Paczek(+2) Rogal(+2) Ekler(+2) Ptys(+2) Sernik(+3) Makowiec(+2) Szarlotka(+2) 
+[Kierownik] Godzina Tp+30min: Otwieram drzwi dla klientów!
+[Kierownik] Wpuszczam 60 klientów...
+[Kasjer 1] Otwieram kasę.
+[Kasjer 2] Otwieram kasę.
+[Kasjer 1] Klient PID: 12735. Kupil: Bagietka(x1) Ptys(x1) | Razem: 16 PLN
+[Piekarz] Dostawa: Chleb(+2) Bulka(+3) Paczek(+3) Rogal(+3) Ekler(+1) Sernik(+1) Makowiec(+3) Precel(+1) 
+[Kasjer 1] Klient PID: 12736. Kupil: Bagietka(x1) Sernik(x1) | Razem: 22 PLN
+[Piekarz] Dostawa: Chleb(+2) Bulka(+2) Drozdzowka(+3) Rogal(+2) Bagietka(+2) Ptys(+3) Makowiec(+3) Szarlotka(+3) Precel(+2) 
+[Kasjer 1] Klient PID: 12737. Kupil: Sernik(x2) Makowiec(x2) Szarlotka(x1) Precel(x1) | Razem: 35 PLN
+[Kasjer 2] Klient PID: 12738. Kupil: Bulka(x2) Rogal(x1) Ptys(x1) Szarlotka(x2) | Razem: 37 PLN
+[Piekarz] Dostawa: Chleb(+3) Bulka(+2) Drozdzowka(+2) Bagietka(+3) Ekler(+3) Ptys(+3) Sernik(+2) Makowiec(+2) Szarlotka(+3) Precel(+2) 
+[Kasjer 1] Klient PID: 12739. Kupil: Bulka(x2) Makowiec(x2) | Razem: 30 PLN
+[Kasjer 2] Klient PID: 12740. Kupil: Rogal(x1) Ptys(x1) | Razem: 11 PLN
+[Piekarz] Dostawa: Chleb(+3) Paczek(+2) Rogal(+3) Bagietka(+2) Ekler(+1) Ptys(+1) Sernik(+1) Makowiec(+1) Precel(+3) 
+[Kasjer 1] Klient PID: 12741. Kupil: Chleb(x2) Drozdzowka(x1) Ptys(x1) Precel(x1) | Razem: 31 PLN
+[Kasjer 2] Klient PID: 12742. Kupil: Paczek(x2) Sernik(x2) | Razem: 40 PLN
+[Kasjer 1] Klient PID: 12743. Kupil: Rogal(x1) Ekler(x1) Szarlotka(x2) | Razem: 17 PLN
+[Piekarz] Dostawa: Chleb(+3) Paczek(+2) Drozdzowka(+3) Rogal(+3) Bagietka(+2) Ekler(+2) Ptys(+3) Makowiec(+2) Szarlotka(+1) 
+[Kasjer 2] Klient PID: 12744. Kupil: Rogal(x2) Ekler(x1) | Razem: 19 PLN
+[Kasjer 1] Klient PID: 12745. Kupil: Rogal(x2) Ekler(x1) | Razem: 19 PLN
+[Piekarz] Dostawa: Chleb(+1) Paczek(+3) Rogal(+3) Bagietka(+2) Ekler(+2) Ptys(+2) Sernik(+2) Szarlotka(+2) Precel(+1) 
+[Kasjer 2] Klient PID: 12746. Kupil: Ekler(x1) Ptys(x1) Sernik(x2) Makowiec(x1) Precel(x1) | Razem: 41 PLN
+[Kasjer 1] Klient PID: 12747. Kupil: Bulka(x2) Ptys(x3) Makowiec(x1) | Razem: 41 PLN
+[Kasjer 2] Klient PID: 12748. Kupil: Bulka(x1) Makowiec(x2) | Razem: 19 PLN
+[Piekarz] Dostawa: Chleb(+2) Bulka(+3) Paczek(+2) Drozdzowka(+3) Bagietka(+2) Ekler(+3) Ptys(+3) Sernik(+3) Makowiec(+1) Szarlotka(+3) Precel(+2) 
+[Kasjer 1] Klient PID: 12749. Kupil: Chleb(x2) Drozdzowka(x2) Makowiec(x1) | Razem: 38 PLN
+[Kasjer 2] Klient PID: 12750. Kupil: Bagietka(x2) Ptys(x2) Makowiec(x1) Precel(x1) | Razem: 39 PLN
+[Piekarz] Dostawa: Chleb(+3) Bulka(+1) Paczek(+1) Drozdzowka(+3) Rogal(+3) Bagietka(+3) Ptys(+1) Sernik(+3) Makowiec(+3) Szarlotka(+1) Precel(+2) 
+[Kasjer 1] Klient PID: 12751. Kupil: Bulka(x1) Bagietka(x1) Precel(x2) | Razem: 28 PLN
+[Kasjer 2] Klient PID: 12752. Kupil: Bagietka(x3) | Razem: 33 PLN
+[Kasjer 1] Klient PID: 12753. Kupil: Ekler(x2) Sernik(x1) Precel(x2) | Razem: 31 PLN
+[Piekarz] Dostawa: Chleb(+2) Bulka(+3) Rogal(+3) Bagietka(+2) Ekler(+2) Ptys(+1) Sernik(+1) Szarlotka(+1) Precel(+1) 
+[Kasjer 2] Klient PID: 12754. Kupil: Ptys(x2) | Razem: 10 PLN
+[Kasjer 1] Klient PID: 12755. Kupil: Paczek(x2) Drozdzowka(x1) | Razem: 29 PLN
+[Piekarz] Dostawa: Chleb(+3) Paczek(+1) Drozdzowka(+2) Rogal(+1) Ptys(+1) Sernik(+1) Makowiec(+2) 
+[Kasjer 2] Klient PID: 12756. Kupil: Chleb(x1) Ptys(x2) Makowiec(x1) Precel(x1) | Razem: 23 PLN
+[Kasjer 1] Klient PID: 12757. Kupil: Drozdzowka(x1) Rogal(x2) | Razem: 23 PLN
+[Kasjer 2] Klient PID: 12758. Kupil: Bagietka(x2) Szarlotka(x3) | Razem: 28 PLN
+[Piekarz] Dostawa: Chleb(+1) Paczek(+1) Bagietka(+2) Ekler(+3) Ptys(+2) Sernik(+1) Makowiec(+3) Szarlotka(+2) 
+[Kasjer 1] Klient PID: 12759. Kupil: Drozdzowka(x1) Rogal(x1) | Razem: 17 PLN
+[Kasjer 2] Klient PID: 12760. Kupil: Chleb(x2) Rogal(x2) | Razem: 24 PLN
+[Piekarz] Dostawa: Chleb(+2) Paczek(+2) Drozdzowka(+3) Rogal(+1) Bagietka(+3) Ekler(+1) Sernik(+3) Makowiec(+2) Szarlotka(+2) 
+[Kasjer 1] Klient PID: 12761. Kupil: Bagietka(x1) Ekler(x2) Szarlotka(x1) | Razem: 27 PLN
+[Kasjer 2] Klient PID: 12762. Kupil: Ekler(x2) Sernik(x2) | Razem: 36 PLN
+[Kasjer 1] Klient PID: 12763. Kupil: Chleb(x2) Rogal(x2) | Razem: 24 PLN
+[Piekarz] Dostawa: Chleb(+2) Bulka(+2) Paczek(+1) Drozdzowka(+3) Bagietka(+2) Ekler(+3) Ptys(+1) Sernik(+2) Makowiec(+1) Szarlotka(+2) Precel(+2) 
+[Kasjer 2] Klient PID: 12764. Kupil: Bulka(x1) Paczek(x2) Rogal(x2) Ptys(x2) Makowiec(x2) | Razem: 59 PLN
+
+--- RAPORT KONCOWY (INWENTARYZACJA KIEROWNIKA) ---
+Produkt      | Wyprodukowano | Sprzedano | Na polce
+-------------|---------------|-----------|---------
+ Chleb       |     29        |      9    |     14
+ Bulka       |     17        |      9    |      2
+ Paczek      |     22        |      6    |      5
+ Drozdzowka  |     22        |      6    |     12
+ Rogal       |     24        |     16    |      0
+ Bagietka    |     28        |     11    |      9
+ Ekler       |     25        |     10    |      5
+ Ptys        |     26        |     16    |      0
+ Sernik      |     24        |     10    |      1
+ Makowiec    |     25        |     13    |      3
+ Szarlotka   |     24        |      9    |      6
+ Precel      |     17        |      9    |      1
+
+[Kierownik] Zamykam sklep. Czekam na raporty pracownikow...
+=> [RAPORT Kasjer 1] Koniec zmiany. Mój utarg: 428 PLN
+[Piekarz] Dostawa: Chleb(+3) Bulka(+1) Drozdzowka(+1) Bagietka(+3) Ekler(+1) Ptys(+2) Sernik(+3) Makowiec(+3) Szarlotka(+2) 
+=> [RAPORT Piekarz] Koniec wypieków. Łącznie upiekłem: 302 sztuk.
+=> [RAPORT Kasjer 2] Koniec zmiany. Mój utarg: 419 PLN
+
+[Kierownik] Zamykanie systemu i usuwanie IPC...
