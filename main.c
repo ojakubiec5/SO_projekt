@@ -78,7 +78,8 @@ int main(int argc, char *argv[]) {
     log_msg(semid, "[Kierownik] Wpuszczam %d klientów...\n", NUM_TEST_CUSTOMERS);
     for (int i = 0; i < NUM_TEST_CUSTOMERS; i++) {
         if (fork() == 0) { execl("./customer", "customer", NULL); exit(0); }
-        usleep((rand() % 500 + 500) * 1000);
+        
+        usleep((rand() % 200 + 100) * 1000); 
     }
 
     for (int i = 0; i < NUM_TEST_CUSTOMERS; i++) wait(NULL);

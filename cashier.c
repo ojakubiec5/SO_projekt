@@ -24,12 +24,11 @@ int main(int argc, char *argv[]) {
         }
         if (msgrcv(msgid, &msg, sizeof(OrderMsg) - sizeof(long), 1, 0) == -1) break;
 
-process_order:
+        process_order:
         if (store->evacuation_mode) break;
 
-        log_msg(semid, "[Kasjer %d] Klient PID: %d. ", cashier_id, msg.customer_pid);
+        char receipt_buf[512] = ""; 
         int total = 0;
-        int items = 0;
         
         struct sembuf lock = {SEM_STATS, -1, 0};
         struct sembuf unlock = {SEM_STATS, 1, 0};
@@ -37,16 +36,24 @@ process_order:
         semop(semid, &lock, 1);
         for(int i=0; i<P_TYPES; i++) {
             if (msg.cart[i] > 0) {
-                total += msg.cart[i] * store->price[i];
-                items += msg.cart[i];
+                int val = msg.cart[i] * store->price[i];
+                total += val;
+                
                 store->total_sold[i] += msg.cart[i];
+                
+                char item_tmp[64];
+                sprintf(item_tmp, "%s(x%d) ", PRODUCT_NAMES[i], msg.cart[i]);
+                strcat(receipt_buf, item_tmp);
             }
         }
         semop(semid, &unlock, 1);
         
-        shift_income += total; 
-        log_msg(semid, "Kupił %d szt. Razem: %d PLN\n", items, total);
-        usleep(300000);
+        shift_income += total;
+        
+        log_msg(semid, "[Kasjer %d] Klient PID: %d. Kupil: %s| Razem: %d PLN\n", 
+            cashier_id, msg.customer_pid, receipt_buf, total);
+            
+        usleep(800000);
     }
 
     log_msg(semid, "=> [RAPORT Kasjer %d] Koniec zmiany. Mój utarg: %ld PLN\n", cashier_id, shift_income);

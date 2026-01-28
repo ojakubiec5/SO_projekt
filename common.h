@@ -19,8 +19,8 @@
 
 #define P_TYPES 12         
 #define MAX_SHELF_CAP 20   
-#define MAX_CUSTOMERS 10   
-#define NUM_TEST_CUSTOMERS 50 
+#define MAX_CUSTOMERS 20   
+#define NUM_TEST_CUSTOMERS 60
 #define K_FACTOR (MAX_CUSTOMERS / 2) 
 #define REPORT_FILE "raport.txt"
 
