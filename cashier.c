@@ -18,10 +18,16 @@ int main(int argc, char *argv[]) {
         if (cashier_id == 2) {
             if (store->customers_inside < (MAX_CUSTOMERS / 2)) {
                 if (msgrcv(msgid, &msg, sizeof(OrderMsg) - sizeof(long), 1, IPC_NOWAIT) == -1) {
-                    if (errno == ENOMSG) { sleep(2); continue; }
-                } else { goto process_order; }
+                    if (errno == ENOMSG) { 
+                        usleep(200000);
+                        continue; 
+                    }
+                } else { 
+                    goto process_order; 
+                }
             }
         }
+        
         if (msgrcv(msgid, &msg, sizeof(OrderMsg) - sizeof(long), 1, 0) == -1) break;
 
         process_order:
@@ -53,7 +59,7 @@ int main(int argc, char *argv[]) {
         log_msg(semid, "[Kasjer %d] Klient PID: %d. Kupil: %s| Razem: %d PLN\n", 
             cashier_id, msg.customer_pid, receipt_buf, total);
             
-        usleep(800000);
+        usleep(100000);
     }
 
     log_msg(semid, "=> [RAPORT Kasjer %d] Koniec zmiany. Mój utarg: %ld PLN\n", cashier_id, shift_income);
