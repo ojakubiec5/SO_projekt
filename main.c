@@ -1,21 +1,31 @@
 #include "common.h"
+#include <sys/wait.h> 
 
 int shmid, semid, msgid;
 BakeryStore *store;
 
+pid_t pid_baker, pid_c1, pid_c2;
+volatile int finished_customers = 0; 
+
+
 void cleanup() {
-    log_msg(semid, "\n[Kierownik] Zamykanie systemu i usuwanie IPC...\n");
-    if (store != NULL) {
-        store->shop_open = 0;
-        shmdt(store);
-    }
-    msgctl(msgid, IPC_RMID, NULL);
+    log_msg(semid, "\n[Kierownik] Czyszczenie zasobów systemu...\n");
+
+    if (store != NULL) shmdt(store);
+
     shmctl(shmid, IPC_RMID, NULL);
     semctl(semid, 0, IPC_RMID);
+    msgctl(msgid, IPC_RMID, NULL);
+    
+    signal(SIGTERM, SIG_IGN); 
     kill(0, SIGTERM); 
 }
 
-void handle_sigint(int sig) { cleanup(); exit(0); }
+void handle_sigint(int sig) { 
+    printf("\n[SIGINT] Wymuszone zamknięcie...\n");
+    cleanup(); 
+    exit(0); 
+}
 
 void handle_inventory(int sig) {
     log_msg(semid, "\n!!! [Kierownik] Otrzymano sygnał INWENTARYZACJA (SIGUSR1) !!!\n");
@@ -27,14 +37,23 @@ void handle_evacuation(int sig) {
     kill(0, SIGUSR2); 
 }
 
+void handle_sigchld(int sig) {
+    while (waitpid(-1, NULL, WNOHANG) > 0) {
+        finished_customers++;
+    }
+}
+
+
 int main(int argc, char *argv[]) {
     unlink(REPORT_FILE); 
     int fd = creat(REPORT_FILE, 0666); close(fd); 
 
     srand(time(NULL));
+    
     signal(SIGINT, handle_sigint);
     signal(SIGUSR1, handle_inventory);
     signal(SIGUSR2, SIG_IGN); 
+    signal(SIGCHLD, handle_sigchld); 
 
     key_t key_shm = ftok(FTOK_PATH, ID_SHM);
     key_t key_sem = ftok(FTOK_PATH, ID_SEM);
@@ -65,25 +84,45 @@ int main(int argc, char *argv[]) {
 
     msgid = msgget(key_msg, 0666 | IPC_CREAT);
 
-    log_msg(semid, "[Kierownik] Godzina Tp: Uruchamiam piekarnię (Sklep zamknięty).\n");
-    if (fork() == 0) { execl("./baker", "baker", NULL); exit(1); }
+    log_msg(semid, "[Kierownik] Godzina Tp: Uruchamiam piekarnię.\n");
+    if ((pid_baker = fork()) == 0) { execl("./baker", "baker", NULL); exit(1); }
 
     log_msg(semid, "[Kierownik] Czekam na wypieki (symulacja 30min)...\n");
     sleep(3); 
 
-    log_msg(semid, "[Kierownik] Godzina Tp+30min: Otwieram drzwi dla klientów!\n");
-    if (fork() == 0) { execl("./cashier", "cashier", "1", NULL); exit(1); }
-    if (fork() == 0) { execl("./cashier", "cashier", "2", NULL); exit(1); }
+    log_msg(semid, "[Kierownik] Otwieram drzwi!\n");
+    if ((pid_c1 = fork()) == 0) { execl("./cashier", "cashier", "1", NULL); exit(1); }
+    if ((pid_c2 = fork()) == 0) { execl("./cashier", "cashier", "2", NULL); exit(1); }
 
     log_msg(semid, "[Kierownik] Wpuszczam %d klientów...\n", NUM_TEST_CUSTOMERS);
+    
     for (int i = 0; i < NUM_TEST_CUSTOMERS; i++) {
-        if (fork() == 0) { execl("./customer", "customer", NULL); exit(0); }
-        
-        usleep((rand() % 200 + 100) * 1000); 
+        if (fork() == 0) { 
+            execl("./customer", "customer", NULL); 
+            perror("Exec error"); exit(1); 
+        }
+        usleep(2000); 
     }
 
-    for (int i = 0; i < NUM_TEST_CUSTOMERS; i++) wait(NULL);
+    while (finished_customers < NUM_TEST_CUSTOMERS) {
+        usleep(100000); 
+    }
+    usleep(200000);
+
+    struct msqid_ds buf;
+    log_msg(semid, "[Kierownik] Klienci wyszli. Czekam na opróżnienie kolejki zamówień...\n");
     
+    int queue_waits = 0;
+    do {
+        msgctl(msgid, IPC_STAT, &buf); 
+        if (buf.msg_qnum > 0) {
+            if (queue_waits % 10 == 0) 
+                log_msg(semid, "Waiting for queue... (%ld msgs left)\n", buf.msg_qnum);
+            usleep(100000); 
+            queue_waits++;
+        }
+    } while (buf.msg_qnum > 0 && queue_waits < 100); 
+
     log_msg(semid, "\n--- RAPORT KONCOWY (INWENTARYZACJA KIEROWNIKA) ---\n");
     log_msg(semid, "%-12s | Wyprodukowano | Sprzedano | Na polce\n", "Produkt");
     log_msg(semid, "-------------|---------------|-----------|---------\n");
@@ -96,12 +135,26 @@ int main(int argc, char *argv[]) {
             store->shelves[i]);
     }
     
-    log_msg(semid, "\n[Kierownik] Zamykam sklep. Czekam na raporty pracownikow...\n");
+    log_msg(semid, "\n[Kierownik] Zamykam sklep.\n");
     store->shop_open = 0; 
-    
-    msgctl(msgid, IPC_RMID, NULL);
+    msgctl(msgid, IPC_RMID, NULL); 
 
-    sleep(2); 
+    log_msg(semid, "[Kierownik] Czekam na wyjście pracowników...\n");
+    
+    int active_workers = 3;
+    int timeout = 0;
+    while (active_workers > 0 && timeout < 50) {
+        active_workers = 0;
+        if (kill(pid_baker, 0) == 0) active_workers++;
+        if (kill(pid_c1, 0) == 0) active_workers++;
+        if (kill(pid_c2, 0) == 0) active_workers++;
+        
+        if (active_workers > 0) {
+            usleep(100000);
+            timeout++;
+        }
+    }
+    
     cleanup();
     return 0;
 }
