@@ -159,6 +159,8 @@ Testy:
 Test 1: Symulacja Deficytu Towaru
 
 Cel: Weryfikacja logiki synchronizacji w sytuacji, gdy popyt drastycznie przewyższa podaż. Test sprawdza, czy klienci poprawnie obsługują puste półki (nie kupują "ujemnych" towarów) i nie blokują dostępu do sklepu.
+
+
         [Kierownik] Godzina Tp: Uruchamiam piekarnię.
         [Kierownik] Czekam na wypieki (symulacja 30min)...
         [Piekarz] Zaczynam pracę.
