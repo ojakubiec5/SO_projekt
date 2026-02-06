@@ -160,19 +160,70 @@ Test 1: Standardowy przepływ i Raport Końcowy
 
 Cel: Sprawdzenie poprawności bilansu (Produkcja - Sprzedaż = Magazyn).
 
-    [Kierownik] Godzina Tp: Uruchamiam piekarnię.
-    [Piekarz] Dostawa: Chleb(+3) Paczek(+2) Rogal(+2) Bagietka(+1)...
-    [Kierownik] Wpuszczam 30 klientów...
-    [Kasjer 1] Klient PID: 77477. Kupil: Paczek(x1) Ekler(x1) Sernik(x1) | Razem: 17 PLN
-    ...
-    --- RAPORT KONCOWY (INWENTARYZACJA KIEROWNIKA) ---
-    Produkt      | Wyprodukowano | Sprzedano | Na polce
-     Chleb       |      6        |      4    |      2
-     Bulka       |      5        |      5    |      0
-    ...
-    => [RAPORT Kasjer 1] Koniec zmiany. Mój utarg: 116 PLN
-    => [RAPORT Piekarz] Koniec wypieków. Łącznie upiekłem: 85 sztuk.
-    [Kierownik] Czyszczenie zasobów systemu...
+        [Kierownik] Godzina Tp: Uruchamiam piekarnię.
+        [Kierownik] Czekam na wypieki (symulacja 30min)...
+        [Piekarz] Zaczynam pracę.
+        [Piekarz] Dostawa: Chleb(+3) Bulka(+3) Paczek(+1) Rogal(+2) Bagietka(+1) Ekler(+1) Ptys(+3) Sernik(+1) Makowiec(+1) Szarlotka(+3) Precel(+1)
+        [Piekarz] Dostawa: Bulka(+1) Drozdzowka(+1) Bagietka(+1) Ekler(+2) Precel(+2)
+        [Kierownik] Otwieram drzwi!
+        [Kierownik] Wpuszczam 100 klientów...
+        [Kasjer 1] Otwieram kasę.
+        [Kasjer 2] Otwieram kasę.
+        [Piekarz] Dostawa: Chleb(+1) Drozdzowka(+1) Ekler(+2) Sernik(+3) Makowiec(+3) Precel(+1)
+        [Kasjer 1] Klient PID: 566959. Kupil: Chleb(x1) Bagietka(x1) | Razem: 11 PLN
+        [Kasjer 2] Klient PID: 566960. Kupil: Drozdzowka(x1) | Razem: 7 PLN
+        [Kasjer 1] Klient PID: 566961. Kupil: Bulka(x1) Szarlotka(x2) | Razem: 22 PLN
+        [Kierownik] Klienci wyszli. Czekam na opróżnienie kolejki zamówień...
+        Waiting for queue... (22 msgs left)
+        [Kasjer 2] Klient PID: 566962. Kupil: Ekler(x1) | Razem: 7 PLN
+        [Kasjer 1] Klient PID: 566963. Kupil: Chleb(x1) Bulka(x1) Makowiec(x1) | Razem: 16 PLN
+        [Kasjer 2] Klient PID: 566964. Kupil: Szarlotka(x1) | Razem: 8 PLN
+        [Kasjer 1] Klient PID: 566965. Kupil: Chleb(x1) Sernik(x2) Makowiec(x1) | Razem: 30 PLN
+        [Kasjer 2] Klient PID: 566966. Kupil: Chleb(x1) | Razem: 8 PLN
+        [Kasjer 1] Klient PID: 566967. Kupil: Ekler(x1) | Razem: 7 PLN
+        [Piekarz] Dostawa: Chleb(+1) Bulka(+1) Drozdzowka(+2) Rogal(+2) Bagietka(+3) Ekler(+3) Ptys(+2) Sernik(+1) Szarlotka(+3) Precel(+1)
+        [Kasjer 2] Klient PID: 566968. Kupil: Drozdzowka(x1) Precel(x1) | Razem: 9 PLN
+        [Kasjer 1] Klient PID: 566969. Kupil: Rogal(x1) Makowiec(x1) | Razem: 10 PLN
+        [Kasjer 2] Klient PID: 566971. Kupil: Paczek(x1) Sernik(x2) | Razem: 31 PLN
+        [Kasjer 1] Klient PID: 566972. Kupil: Bagietka(x1) | Razem: 3 PLN
+        Waiting for queue... (12 msgs left)
+        [Kasjer 2] Klient PID: 566973. Kupil: Precel(x1) | Razem: 2 PLN
+        [Kasjer 1] Klient PID: 566974. Kupil: Ptys(x1) | Razem: 7 PLN
+        [Kasjer 2] Klient PID: 566975. Kupil: Rogal(x1) Ptys(x1) | Razem: 15 PLN
+        [Kasjer 1] Klient PID: 566976. Kupil: Bulka(x1) | Razem: 6 PLN
+        [Kasjer 2] Klient PID: 566977. Kupil: Makowiec(x1) | Razem: 2 PLN
+        [Kasjer 1] Klient PID: 566979. Kupil: Bulka(x1) | Razem: 6 PLN
+        [Piekarz] Dostawa: Chleb(+1) Bulka(+1) Drozdzowka(+1) Rogal(+2) Ptys(+3) Sernik(+2) Szarlotka(+1) Precel(+2)
+        [Kasjer 2] Klient PID: 566980. Kupil: Precel(x1) | Razem: 2 PLN
+        [Kasjer 1] Klient PID: 566982. Kupil: Ptys(x1) | Razem: 7 PLN
+        [Kasjer 2] Klient PID: 566984. Kupil: Ekler(x1) | Razem: 7 PLN
+        [Kasjer 1] Klient PID: 566985. Kupil: Precel(x1) | Razem: 2 PLN
+        Waiting for queue... (2 msgs left)
+        [Kasjer 1] Klient PID: 566990. Kupil: Ekler(x1) | Razem: 7 PLN
+        [Kasjer 2] Klient PID: 566998. Kupil: Ekler(x1) | Razem: 7 PLN
+        
+        --- RAPORT KONCOWY (INWENTARYZACJA KIEROWNIKA) ---
+        Produkt      | Wyprodukowano | Sprzedano | Na polce
+        -------------|---------------|-----------|---------
+         Chleb       |      6        |      4    |      2
+         Bulka       |      6        |      4    |      2
+         Paczek      |      1        |      1    |      0
+         Drozdzowka  |      5        |      2    |      3
+         Rogal       |      6        |      2    |      4
+         Bagietka    |      5        |      2    |      3
+         Ekler       |      8        |      5    |      3
+         Ptys        |      8        |      3    |      5
+         Sernik      |      7        |      4    |      3
+         Makowiec    |      4        |      4    |      0
+         Szarlotka   |      7        |      3    |      4
+         Precel      |      7        |      4    |      3
+        
+        [Kierownik] Zamykam sklep.
+        [Kierownik] Czekam na wyjście pracowników...
+        => [RAPORT Kasjer 1] Koniec zmiany. Mój utarg: 134 PLN
+        => [RAPORT Kasjer 2] Koniec zmiany. Mój utarg: 105 PLN
+        [Piekarz] Dostawa: Bulka(+3) Paczek(+2) Bagietka(+2) Precel(+2)
+        => [RAPORT Piekarz] Koniec wypieków. Łącznie upiekłem: 79 sztuk.
 
 Wynik: ZALICZONY.
 
@@ -201,24 +252,44 @@ Cel: Sprawdzenie, czy Kierownik nie zamknie sklepu przed obsłużeniem klientów
 
 Wynik: ZALICZONY. System poczekał na obsłużenie wszystkich 22 wiadomości.
 
-Test 4: Przerwanie (SIGINT)
+Test 4: Stress test (symulacja bez sleepów)
 
-Cel: Sprawdzenie czyszczenia zasobów po Ctrl+C.
+Cel: Weryfikacja poprawności działania semaforów oraz stabilności systemu operacyjnego przy próbie utworzenia ogromnej liczby procesów w bardzo krótkim czasie. Test sprawdza, czy program jest odporny na wyczerpanie limitu procesów
 
-    ^C
-    [SIGINT] Wymuszone zamknięcie...
-    [Kierownik] Czyszczenie zasobów systemu...
-
-
-    $ ipcs -a
-    ------ Message Queues --------
-    key        msqid      owner      perms      used-bytes   messages
-    
-    ------ Shared Memory Segments --------
-    key        shmid      owner      perms      bytes      nattch     status
-    
-    ------ Semaphore Arrays --------
-    key        semid      owner      perms      nsems
+        (...)
+        Piekarz] Dostawa: Szarlotka(+1)
+        [Kasjer 1] Klient PID: 678128. Kupil: Sernik(x1) Makowiec(x1) Precel(x1) | Razem: 19 PLN
+        [Kasjer 2] Klient PID: 678130. Kupil: Drozdzowka(x1) | Razem: 3 PLN
+        [Kasjer 1] Klient PID: 678131. Kupil: Bulka(x1) Drozdzowka(x1) | Razem: 12 PLN
+        [Piekarz] Dostawa: Drozdzowka(+1)
+        [Piekarz] Dostawa: Bulka(+3)
+        [Piekarz] Dostawa: Bulka(+1) Drozdzowka(+1) Makowiec(+2) Szarlotka(+1)
+        [Kasjer 2] Klient PID: 678132. Kupil: Bulka(x3) Makowiec(x1) | Razem: 33 PLN
+        [Kasjer 1] Klient PID: 678133. Kupil: Bulka(x1) Makowiec(x1) Szarlotka(x1) | Razem: 19 PLN
+        [Piekarz] Dostawa: Bulka(+1) Sernik(+1) Makowiec(+1)
+        [Kierownik] Klienci wyszli. Czekam na opróżnienie kolejki zamówień...
+        
+        --- RAPORT KONCOWY (INWENTARYZACJA KIEROWNIKA) ---
+        Produkt      | Wyprodukowano | Sprzedano | Na polce
+        -------------|---------------|-----------|---------
+         Chleb       |   1305        |   1105    |    200
+         Bulka       |   1238        |   1038    |    200
+         Paczek      |   1248        |   1048    |    200
+         Drozdzowka  |   1257        |   1057    |    200
+         Rogal       |   1205        |   1005    |    200
+         Bagietka    |   1233        |   1033    |    200
+         Ekler       |   1205        |   1005    |    200
+         Ptys        |   1246        |   1046    |    200
+         Sernik      |   1270        |   1070    |    200
+         Makowiec    |   1259        |   1059    |    200
+         Szarlotka   |   1235        |   1035    |    200
+         Precel      |   1228        |   1028    |    200
+        
+        [Kierownik] Zamykam sklep.
+        => [RAPORT Kasjer 2] Koniec zmiany. Mój utarg: 23837 PLN
+        [Kierownik] Czekam na wyjście pracowników...
+        => [RAPORT Piekarz] Koniec wypieków. Łącznie upiekłem: 14929 sztuk.
+        => [RAPORT Kasjer 1] Koniec zmiany. Mój utarg: 52239 PLN
 
 Wynik: ZALICZONY.
 
